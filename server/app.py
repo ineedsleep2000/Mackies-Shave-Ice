@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask, request, make_response, abort, session
+from flask import Flask, request,jsonify, make_response, abort, session
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
@@ -22,36 +22,47 @@ class Users(Resource):
             new_user = User(
                 name=req_json["name"],
                 email=req_json["email"],
-                _password_hash=req_json["password"],
+                password_hash=req_json["password"],  # Use the setter to hash the password
                 is_admin=req_json.get("is_admin", False)
             )
         except ValueError as e:
-            return make_response({'errors': e.args})
+            return make_response({'errors': e.args[0]}, 400)  # Ensure error message is returned as JSON
+
         db.session.add(new_user)
         db.session.commit()
         session["user_id"] = new_user.id
         return make_response(new_user.to_dict(), 201)
 
+api.add_resource(Users, "/users", "/signup")
+
 @app.route("/login", methods=["POST"])
 def login():
-    user = User.query.filter(User.email == request.get_json()["email"]).first()
-    if user and user.authenticate(request.get_json()["password"]):
-        session["user_id"] = user.id 
-        return make_response(user.to_dict(), 200)
+    data = request.get_json()
+    email = data.get("email")
+    password = data.get("password")
+
+    user = User.query.filter_by(email=email).first()
+
+    if user and user.authenticate(password):
+        session["user_id"] = user.id
+        return jsonify({"success": True, "token": user.to_dict()})
     else:
-        raise Unauthorized
-    
+        return jsonify({"success": False, "message": "Invalid credentials"}), 401
+
 @app.route("/authorized")
 def authorized():
     user = User.query.filter(User.id == session.get("user_id")).first()
     if not user:
-        raise Unauthorized
-    return make_response(user.to_dict(), 200)
+        return jsonify({"success": False, "message": "Unauthorized"}), 401
+    return jsonify({"success": True, "user": user.to_dict()})
 
 @app.route("/logout", methods=["DELETE"])
 def logout():
     session.clear()
     return make_response({}, 204)
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 ########################################################################################################################
 #Shaved Ice#############################################################################################################
