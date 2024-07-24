@@ -1,6 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
+import emailjs from "emailjs-com";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .send(
+        "service_yc3cqil",
+        "template_umfvr2j",
+        formData,
+        "-BPieWAks5mZ7rkWr"
+      )
+      .then((response) => {
+        console.log("SUCCESS!", response.status, response.text);
+        alert("Message sent successfully!");
+      })
+      .catch((err) => {
+        console.log("FAILED...", err);
+        alert("Failed to send message. Please try again.");
+      });
+
+    setFormData({
+      name: "",
+      email: "",
+      message: "",
+    });
+  };
+
   return (
     <div className="contact-container">
       <header className="contact-header">
@@ -11,56 +52,39 @@ const Contact = () => {
           Ring—we’re ready to answer any and all questions.
         </h4>
       </header>
-      <div className="contact-sections">
-        <div className="contact-box">
-          <h1>Features</h1>
-          <p>
-            We offer a few features, primarily known for showing workout cards
-            and possibly rolling dice, and flipping cards in the future to work
-            as a fitness game.
-          </p>
-          <p>
-            If you would like to contact us about ideas or more information,
-            please call our main office at (555)-Lucky-Fitness.
-          </p>
-        </div>
-        <div className="contact-box">
-          <h1>Support</h1>
-          <p>
-            If you need support in the app, please call our main office at
-            (555)-Lucky-Fitness.
-          </p>
-          <p>
-            If you want to support us in our endeavors to make more apps like
-            this, be sure to send positive energy to our instructor, to
-            influence him to give us a good grade on this app!
-          </p>
-        </div>
-        <div className="contact-box">
-          <h1>Roadmap</h1>
-          <p>
-            We are planning to add dice functionality and a card flip
-            opportunity in the future, and we are not planning to make this a
-            paid service.
-          </p>
-          <p>
-            If you would like to add your suggestions to our roadmap for future
-            updates, please call our main office at (555)-Lucky-Fitness.
-          </p>
-        </div>
-        <div className="contact-box">
-          <h1>Sauron, Lord of the One Ring</h1>
-          <p>
-            After half a century of historical events. Lucky Fitness and its
-            team, all believe that Sauron is relaxing off the coast of Puerto
-            Rico, and is enjoying refreshing margaritas on the beach.
-          </p>
-          <p>
-            If you have a different theory on what Sauron is up to these days,
-            we would love to hear it by giving us a call at our main office at
-            (555)-Lucky-Fitness.
-          </p>
-        </div>
+      <div className="contact-form">
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Name:</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>Message:</label>
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button type="submit">Send</button>
+        </form>
       </div>
     </div>
   );

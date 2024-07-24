@@ -25,6 +25,11 @@ class User(db.Model, SerializerMixin):
     def authenticate(self, password):
         return bcrypt.check_password_hash(self._password_hash, password.encode("utf8"))
     
+    @validates('name')
+    def validate_name(self, key, name):
+        if not name:
+            raise ValueError('Must have a name')
+        return name
 
     def __repr__(self):
         return f'<id : {self.id}>'
@@ -49,6 +54,12 @@ class Category(db.Model, SerializerMixin):
 
     serialize_rules = ('-snacks.category', '-drinks.category', '-hotdogs.category', '-shaved_ices.category', '-combo_flavors.category')
 
+    @validates('name')
+    def validate_name(self, key, name):
+        if not name:
+            raise ValueError('Must have a name')
+        return name
+
     def __repr__(self):
         return f'<id : {self.id}>'
 
@@ -70,6 +81,13 @@ class ShavedIce(db.Model, SerializerMixin):
 
     serialize_rules = ('-category.shaved_ices', '-combo_flavors.shaved_ice', '-ice_size.shaved_ices')
 
+    @validates('name')
+    def validate_name(self, key, name):
+        if not name:
+            raise ValueError('Must have a name')
+        return name
+
+
     def __repr__(self):
         return f'<id : {self.id}>'
 
@@ -84,6 +102,12 @@ class Flavor(db.Model, SerializerMixin):
     combo_flavor_names = association_proxy('combo_flavors', 'name')
 
     serialize_rules = ('-combo_flavors.flavor',)
+
+    @validates('name')
+    def validate_name(self, key, name):
+        if not name:
+            raise ValueError('Must have a name')
+        return name
 
     def __repr__(self):
         return f'<id : {self.id}>'
@@ -100,6 +124,12 @@ class AddOn(db.Model, SerializerMixin):
 
     serialize_rules = ('-combo_flavors.add_on',)
 
+    @validates('name')
+    def validate_name(self, key, name):
+        if not name:
+            raise ValueError('Must have a name')
+        return name
+
     def __repr__(self):
         return f'<id : {self.id}>'
 
@@ -114,6 +144,12 @@ class Cream(db.Model, SerializerMixin):
     combo_flavor_names = association_proxy('combo_flavors', 'name')
 
     serialize_rules = ('-combo_flavors.cream',)
+
+    @validates('name')
+    def validate_name(self, key, name):
+        if not name:
+            raise ValueError('Must have a name')
+        return name
 
     def __repr__(self):
         return f'<id : {self.id}>'
@@ -144,6 +180,12 @@ class ComboFlavor(db.Model, SerializerMixin):
 
     serialize_rules = ('-category.combo_flavors', '-shaved_ice.combo_flavors', '-flavor.combo_flavors', '-add_on.combo_flavors', '-cream.combo_flavors', '-ice_size.combo_flavors')
 
+    @validates('name')
+    def validate_name(self, key, name):
+        if not name:
+            raise ValueError('Must have a name')
+        return name
+
     def __repr__(self):
         return f'<id : {self.id}>'
 
@@ -163,6 +205,12 @@ class Hotdog(db.Model, SerializerMixin):
 
     serialize_rules = ('-category.hotdogs', '-toppings.hotdog')
 
+    @validates('name')
+    def validate_name(self, key, name):
+        if not name:
+            raise ValueError('Must have a name')
+        return name
+
     def __repr__(self):
         return f'<id : {self.id}>'
 
@@ -179,6 +227,12 @@ class Topping(db.Model, SerializerMixin):
 
     serialize_rules = ('-hotdog.toppings', '-condiment.toppings')
 
+    @validates('hotdog_id')
+    def validate_hotdog_id(self, key, hotdog_id):
+        if not hotdog_id:
+            raise ValueError('Must have a hotdog_id')
+        return hotdog_id
+
     def __repr__(self):
         return f'<id : {self.id}>'
 
@@ -191,6 +245,12 @@ class Condiment(db.Model, SerializerMixin):
     toppings = db.relationship('Topping', back_populates='condiment')
 
     serialize_rules = ('-toppings.condiment',)
+
+    @validates('name')
+    def validate_name(self, key, name):
+        if not name:
+            raise ValueError('Must have a name')
+        return name
 
     def __repr__(self):
         return f'<id : {self.id}>'
@@ -207,6 +267,12 @@ class IceSize(db.Model, SerializerMixin):
 
     serialize_rules = ('-shaved_ices.ice_size', '-combo_flavors.ice_size')
 
+    @validates('size')
+    def validate_size(self, key, size):
+        if not size:
+            raise ValueError('Must have a size')
+        return size
+
     def __repr__(self):
         return f'<id : {self.id}>'
 
@@ -222,6 +288,12 @@ class Drink(db.Model, SerializerMixin):
 
     serialize_rules = ('-category.drinks',)
 
+    @validates('name')
+    def validate_name(self, key, name):
+        if not name:
+            raise ValueError('Must have a name')
+        return name
+
     def __repr__(self):
         return f'<id : {self.id}>'
 
@@ -236,6 +308,12 @@ class Snack(db.Model, SerializerMixin):
     category = db.relationship('Category', back_populates='snacks')
 
     serialize_rules = ('-category.snacks',)
+
+    @validates('name')
+    def validate_name(self, key, name):
+        if not name:
+            raise ValueError('Must have a name')
+        return name
 
     def __repr__(self):
         return f'<id : {self.id}>'

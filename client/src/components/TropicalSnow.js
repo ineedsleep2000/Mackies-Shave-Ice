@@ -12,11 +12,32 @@ function TropicalSnow() {
       .then((data) => setTropicalSnow(data));
   }, []);
 
+  const handleDelete = (deleteTropicalSnowId) =>
+    setTropicalSnow(
+      tropicalSnow.filter(
+        (tropicalSnow) => tropicalSnow.id !== deleteTropicalSnowId
+      )
+    );
+
+  const handleAdd = (newShavedIce) =>
+    setTropicalSnow((shavedIces) => [...shavedIces, newShavedIce]);
+
+  const handleUpdate = (updatedShavedIce) =>
+    setTropicalSnow((shavedIces) =>
+      shavedIces.map((shavedIce) =>
+        shavedIce.id === updatedShavedIce.id ? updatedShavedIce : shavedIce
+      )
+    );
+
   return (
     <div>
       <Menunavbar />
-      <TropicalSnowList tropicalSnow={tropicalSnow} />
-      <AddTropicalSnow />
+      <TropicalSnowList
+        tropicalSnow={tropicalSnow}
+        onDeleteShavedIce={handleDelete}
+        onUpdateShavedIce={handleUpdate}
+      />
+      <AddTropicalSnow onAddShavedIce={handleAdd} />
     </div>
   );
 }

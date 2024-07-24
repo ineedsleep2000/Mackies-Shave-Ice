@@ -12,10 +12,39 @@ function CombinationFlavors() {
       .then((data) => setCombinationFlavors(data));
   }, []);
 
+  const handleDelete = (deleteCombinationFlavorsId) =>
+    setCombinationFlavors(
+      combinationFlavors.filter(
+        (combinationFlavors) =>
+          combinationFlavors.id !== deleteCombinationFlavorsId
+      )
+    );
+
+  const handleAdd = (newShavedIce) =>
+    setCombinationFlavors((shavedIces) => [...shavedIces, newShavedIce]);
+
+  const handleUpdate = (updatedFlavor) =>
+    setCombinationFlavors((flavors) =>
+      flavors.map((flavor) =>
+        flavor.id === updatedFlavor.id ? updatedFlavor : flavor
+      )
+    );
+
+  const handleChoose = (id) => {
+    // Add your logic for choosing a combination flavor
+    console.log("Chosen flavor ID:", id);
+  };
+
   return (
     <div>
       <Menunavbar />
-      <CombinationFlavorsList combinationFlavors={combinationFlavors} />
+      <CombinationFlavorsList
+        combinationFlavors={combinationFlavors}
+        onDeleteComboFlavor={handleDelete}
+        onAddCombinationFlavor={handleAdd}
+        onUpdateComboFlavor={handleUpdate}
+        onChooseComboFlavor={handleChoose}
+      />
       <AddCombinationFlavors />
     </div>
   );
