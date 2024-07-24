@@ -37,7 +37,7 @@ const CombinationFlavorsCard = ({
   };
 
   const handleChoose = () => {
-    onChooseComboFlavor(id); // Call the prop function when choosing the combination flavor
+    onChooseComboFlavor(id);
   };
 
   return (
@@ -55,7 +55,7 @@ const CombinationFlavorsCard = ({
           <p>Shaved Ice ID: {shaved_ice_id}</p>
           <p>Cream ID: {cream_id}</p>
           <p>Ice Size ID: {ice_size_id}</p>
-          <button onClick={handleChoose}>Choose Me</button>
+          {/* <button onClick={handleChoose}>Choose Me</button> */}
           <button className="edit-button" onClick={handleEdit}>
             Edit
           </button>

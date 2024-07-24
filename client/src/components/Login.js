@@ -28,8 +28,9 @@ const LoginComponent = () => {
         }
       })
       .then((data) => {
-        login(data.token);
-        navigate("/"); // Redirect after login
+        console.log("User data received:", data);
+        login(data);
+        navigate("/");
       })
       .catch((error) => setError(error.message));
   };

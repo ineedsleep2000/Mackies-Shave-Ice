@@ -32,14 +32,14 @@ if __name__ == '__main__':
 
         print("Populating all the tables...")
 
-        # users = []
+        users = []
 
-        # u1 = User(name="Joel", email="fakeemail@email.com", password_hash="Admin01", is_admin=True)
-        # users.append(u1)
-        # u2 = User(name="Brian", email="turtle40965@gmail.com", password_hash="Admin02", is_admin=True)
-        # users.append(u2)
+        u1 = User(name="Joel", email="fakeemail@email.com", password_hash="Admin01", is_admin=True)
+        users.append(u1)
+        u2 = User(name="Brian", email="turtle40965@gmail.com", password_hash="Admin02", is_admin=True)
+        users.append(u2)
 
-        # db.session.add_all(users)
+        db.session.add_all(users)
 
         # categories = []
 

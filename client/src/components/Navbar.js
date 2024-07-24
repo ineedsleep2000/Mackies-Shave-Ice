@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext"; // Make sure the path is correct
+import { useAuth } from "../contexts/AuthContext";
 
 const Navbar = () => {
   const { user, isLoggedIn, logout } = useAuth();
@@ -28,7 +28,7 @@ const Navbar = () => {
         {isLoggedIn ? (
           <>
             <li>
-              <span className="button">Welcome, {user.name}</span>
+              <span className="button">Welcome, {user && user.name}</span>
             </li>
             <li>
               <button className="button" onClick={logout}>

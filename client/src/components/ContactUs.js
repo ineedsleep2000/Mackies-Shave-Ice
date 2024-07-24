@@ -47,9 +47,8 @@ const Contact = () => {
       <header className="contact-header">
         <h1>We’d love to hear from you</h1>
         <h4>
-          Whether you’re curious about features, a paid subscription, our future
-          roadmap, or even more information about Sauron, lord of the One
-          Ring—we’re ready to answer any and all questions.
+          Please let us know if you have any questions, need information, or
+          would like to make a request.
         </h4>
       </header>
       <div className="contact-form">

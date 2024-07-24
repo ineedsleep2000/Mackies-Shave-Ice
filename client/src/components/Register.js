@@ -28,7 +28,7 @@ const Register = () => {
       .then((data) => {
         if (data.id) {
           login(data);
-          navigate("/"); // Redirect after registration
+          navigate("/");
         } else {
           setError(data.errors || "Registration failed.");
         }
