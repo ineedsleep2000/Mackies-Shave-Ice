@@ -4,23 +4,22 @@ const EditCombinationFlavor = ({
   combinationFlavor,
   onUpdateCombinationFlavor,
 }) => {
-  const [formData, setFormData] = useState(combinationFlavor);
+  const [formData, setFormData] = useState({
+    name: combinationFlavor.name || "",
+    flavor_id: combinationFlavor.flavor_id || "",
+    add_on_id: combinationFlavor.add_on_id || "",
+    shaved_ice_id: combinationFlavor.shaved_ice_id || "",
+    cream_id: combinationFlavor.cream_id || "",
+    ice_size_id: combinationFlavor.ice_size_id || "",
+  });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`/combo_flavors/${formData.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((updatedFlavor) => onUpdateCombinationFlavor(updatedFlavor))
-      .catch((error) => console.error("Error:", error));
+    onUpdateCombinationFlavor(formData);
   };
 
   return (

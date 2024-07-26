@@ -135,31 +135,27 @@ class ComboFlavors(Resource):
         return response
     
 class ComboFlavors_by_id(Resource):
-    def get(self, id):
-        combo_flavor = ComboFlavor.query.filter_by(id=id).first()
-        if ComboFlavor is None:
-            return make_response({'error': 'combo_flavor not found'}, 404)
-        return make_response(combo_flavor.to_dict(), 200)
-    
-    def delete(self, id):
-        combo_flavor = ComboFlavor.query.filter_by(id=id).first()
+    def patch(self, id):
+        combo_flavor = db.session.get(ComboFlavor, id)
         if not combo_flavor:
             return make_response({'error': 'combo_flavor not found'}, 404)
-        db.session.delete(combo_flavor)
-        db.session.commit()
-        return make_response({'message': 'combo_flavor deleted'}, 204)
-    
-    def patch(self,id):
-        combo_flavor=db.session.get(ComboFlavor, id)
-        if not combo_flavor:
-            return make_response({'error': 'combo_flavor not found'}, 404)
+        
         form_json = request.get_json()
         for key, value in form_json.items():
+            if key.endswith('_id'):
+                # Assuming the foreign key fields are named as <model>_id
+                model_name = key.split('_id')[0].capitalize()
+                model_class = globals().get(model_name)
+                if model_class:
+                    value = db.session.get(model_class, value)
             setattr(combo_flavor, key, value)
+        
         db.session.add(combo_flavor)
         db.session.commit()
         return make_response(combo_flavor.to_dict(), 202)
-    
+
+# Repeat similar updates for other resource classes as needed
+
 ########################################################################################################################
 #Hotdogs################################################################################################################
     
