@@ -32,8 +32,28 @@ const CombinationFlavorsCard = ({
   };
 
   const handleUpdate = (updatedFlavor) => {
-    onUpdateComboFlavor(updatedFlavor);
-    setIsEditing(false);
+    fetch(`/combo_flavors/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedFlavor),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then((error) => {
+            throw new Error(error.message);
+          });
+        }
+        return res.json();
+      })
+      .then((data) => {
+        onUpdateComboFlavor(data);
+        setIsEditing(false);
+      })
+      .catch((error) => {
+        console.error("Error updating combo flavor:", error);
+      });
   };
 
   const handleChoose = () => {
@@ -55,7 +75,6 @@ const CombinationFlavorsCard = ({
           <p>Shaved Ice ID: {shaved_ice_id}</p>
           <p>Cream ID: {cream_id}</p>
           <p>Ice Size ID: {ice_size_id}</p>
-          {/* <button onClick={handleChoose}>Choose Me</button> */}
           <button className="edit-button" onClick={handleEdit}>
             Edit
           </button>
