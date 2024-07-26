@@ -39,7 +39,7 @@ const TropicalSnowCard = ({
           <h3>{name}</h3>
           <p>Ice Size ID: {ice_size_id}</p>
           <p>Category ID: {category_id}</p>
-          <button>Choose Me</button>
+          {/* <button>Choose Me</button> */}
           <button className="edit-button" onClick={handleEdit}>
             Edit
           </button>

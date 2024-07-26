@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask, request, make_response, abort, session
+from flask import Flask, request,jsonify, make_response, abort, session
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
@@ -22,7 +22,7 @@ class Users(Resource):
             new_user = User(
                 name=req_json["name"],
                 email=req_json["email"],
-                _password_hash=req_json["password"],
+                password_hash=req_json["password"],
                 is_admin=req_json.get("is_admin", False)
             )
         except ValueError as e:

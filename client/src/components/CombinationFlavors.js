@@ -31,7 +31,6 @@ function CombinationFlavors() {
     );
 
   const handleChoose = (id) => {
-    // Add your logic for choosing a combination flavor
     console.log("Chosen flavor ID:", id);
   };
 

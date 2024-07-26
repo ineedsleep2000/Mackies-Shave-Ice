@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 const Navbar = () => {
+  const { user, isLoggedIn, logout } = useAuth();
+
   return (
     <div className="navbar">
       <img src="logo" alt="Mackies shave ice" className="logo" />
@@ -22,6 +25,24 @@ const Navbar = () => {
             About
           </Link>
         </li>
+        {isLoggedIn ? (
+          <>
+            <li>
+              <span className="button">Welcome, {user && user.name}</span>
+            </li>
+            <li>
+              <button className="button" onClick={logout}>
+                Logout
+              </button>
+            </li>
+          </>
+        ) : (
+          <li>
+            <Link className="button" to="/login">
+              Login
+            </Link>
+          </li>
+        )}
       </ul>
     </div>
   );

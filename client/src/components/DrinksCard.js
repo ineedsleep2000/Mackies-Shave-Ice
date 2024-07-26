@@ -15,7 +15,7 @@ const DrinksCard = ({ drink, onDeleteDrink }) => {
     <div className="drink-card" style={{ cursor: "pointer" }}>
       <h3>{name}</h3>
       <p>Price: {price}</p>
-      <button>Choose Me</button>
+      {/* <button>Choose Me</button> */}
       <button className="delete-button" onClick={handleDelete}>
         Delete
       </button>
