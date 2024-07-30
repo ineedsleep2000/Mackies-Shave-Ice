@@ -13,31 +13,41 @@ const MenuList = ({
   tropicalSnow,
 }) => {
   return (
-    <div className="combo-flavors-list">
-      <h4 className="small-menu-header">Combination Flavors</h4>
-      {combinationFlavors.map((comboFlavor) => (
-        <CombinationFlavorsCard
-          key={comboFlavor.id}
-          combinationFlavor={comboFlavor}
-        />
-      ))}
-      <h4 className="small-menu-header">Tropical Snow Flavors</h4>
-      {tropicalSnow.map((tropicalFlavor) => (
-        <TropicalSnowCard
-          key={tropicalFlavor.id}
-          tropicalFlavor={tropicalFlavor}
-        />
-      ))}
-      <h4 className="small-menu-header">HotEats and CoolEats</h4>
-      {hotdogs.map((hotdog) => (
-        <HotdogsCard key={hotdog.id} hotdog={hotdog} />
-      ))}
-      {drinks.map((drink) => (
-        <DrinksCard key={drink.id} drink={drink} />
-      ))}
-      {snacks.map((snack) => (
-        <SnacksCard key={snack.id} snack={snack} />
-      ))}
+    <div className="menu-list">
+      <div className="menu-section">
+        <h4 className="combo-word">Combination Flavors</h4>
+        {combinationFlavors.map((comboFlavor) => (
+          <CombinationFlavorsCard
+            key={comboFlavor.id}
+            combinationFlavor={comboFlavor}
+          />
+        ))}
+      </div>
+      <div className="menu-section">
+        <h4 className="trop-word">Tropical Snow Flavors</h4>
+        {tropicalSnow.map((tropicalFlavor) => (
+          <TropicalSnowCard
+            key={tropicalFlavor.id}
+            tropicalFlavor={tropicalFlavor}
+          />
+        ))}
+      </div>
+      <div className="menu-section">
+        <h4 className="hot-word">HotEats and CoolEats</h4>
+        {hotdogs.map((hotdog) => (
+          <HotdogsCard key={hotdog.id} hotdog={hotdog} />
+        ))}
+      </div>
+      <div className="menu-section">
+        {drinks.map((drink) => (
+          <DrinksCard key={drink.id} drink={drink} />
+        ))}
+      </div>
+      <div className="menu-section">
+        {snacks.map((snack) => (
+          <SnacksCard key={snack.id} snack={snack} />
+        ))}
+      </div>
     </div>
   );
 };

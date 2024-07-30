@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import TropicalSnowList from "./TropicalSnowList";
 import AddTropicalSnow from "./AddTropicalSnow";
 import Menunavbar from "./Menunavbar";
+import { useAuth } from "../contexts/AuthContext";
 
 function TropicalSnow() {
   const [tropicalSnow, setTropicalSnow] = useState([]);
+  const { isLoggedIn, isAdmin } = useAuth();
 
   useEffect(() => {
     fetch("/shaved_ices")
@@ -37,7 +39,7 @@ function TropicalSnow() {
         onDeleteShavedIce={handleDelete}
         onUpdateShavedIce={handleUpdate}
       />
-      <AddTropicalSnow onAddShavedIce={handleAdd} />
+      {isLoggedIn && isAdmin && <AddTropicalSnow onAddShavedIce={handleAdd} />}
     </div>
   );
 }

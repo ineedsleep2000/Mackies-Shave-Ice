@@ -105,3 +105,171 @@
 .contact-form form button:hover {
   background-color: #218838;
 }
+
+.navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgb(105, 250, 255);
+}
+
+.navigation li {
+  display: inline-block;
+  margin: 10px 20px;
+  font-size: 28px;
+  cursor: pointer;
+  flex-wrap: wrap;
+}
+
+.m-navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgb(228, 255, 105);
+}
+
+.m-navigation li {
+  display: inline-block;
+  margin: 10px 20px;
+  font-size: 27px;
+  cursor: pointer;
+  flex-wrap: wrap;
+}
+
+.about-container {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  background: rgb(0, 153, 255);
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.about-sections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.about-box {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 300px;
+}
+
+.about-box h1 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.about-box p {
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+.menu-word {
+  text-align: center;
+}
+
+.combo-word {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.trop-word {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.hot-word {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Add spacing between each section */
+}
+
+.hotdog-card {
+  border: 2px solid lightgrey;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 30px 20px 40px; /* Add more left margin */
+  text-align: center;
+  width: 300px; /* Set a fixed width */
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.drink-card {
+  border: 2px solid lightgrey;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 30px 20px 40px; /* Add more left margin */
+  text-align: center;
+  width: 300px; /* Set a fixed width */
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.snack-card {
+  border: 2px solid lightgrey;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 30px 20px 40px; /* Add more left margin */
+  text-align: center;
+  width: 300px; /* Set a fixed width */
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.combo-flavor-card {
+  border: 2px solid lightgrey;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 30px 20px 40px; /* Add more left margin */
+  text-align: center;
+  width: 300px; /* Set a fixed width */
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.shaved-ice-card {
+  border: 2px solid lightgrey;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 30px 20px 40px; /* Add more left margin */
+  text-align: center;
+  width: 300px; /* Set a fixed width */
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  box-sizing: border-box;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import EditCombinationFlavor from "./EditCombinationFlavor";
+import { useAuth } from "../contexts/AuthContext";
 
 const CombinationFlavorsCard = ({
   combinationFlavor,
@@ -18,6 +19,7 @@ const CombinationFlavorsCard = ({
   } = combinationFlavor;
 
   const [isEditing, setIsEditing] = useState(false);
+  const { isLoggedIn, isAdmin } = useAuth();
 
   const handleDelete = () => {
     fetch(`/combo_flavors/${id}`, {
@@ -75,12 +77,16 @@ const CombinationFlavorsCard = ({
           <p>Shaved Ice ID: {shaved_ice_id}</p>
           <p>Cream ID: {cream_id}</p>
           <p>Ice Size ID: {ice_size_id}</p>
-          <button className="edit-button" onClick={handleEdit}>
-            Edit
-          </button>
-          <button className="delete-button" onClick={handleDelete}>
-            Delete
-          </button>
+          {isLoggedIn && isAdmin && (
+            <>
+              <button className="edit-button" onClick={handleEdit}>
+                Edit
+              </button>
+              <button className="delete-button" onClick={handleDelete}>
+                Delete
+              </button>
+            </>
+          )}
         </>
       )}
     </div>
