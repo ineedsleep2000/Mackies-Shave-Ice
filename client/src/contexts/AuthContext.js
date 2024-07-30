@@ -9,6 +9,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -17,6 +18,7 @@ export const AuthProvider = ({ children }) => {
         const parsedUser = JSON.parse(storedUser);
         setUser(parsedUser);
         setIsLoggedIn(true);
+        setIsAdmin(parsedUser.is_admin);
       } catch (e) {
         console.error("Failed to parse user from localStorage", e);
       }
@@ -26,12 +28,14 @@ export const AuthProvider = ({ children }) => {
   const login = (userData) => {
     setUser(userData);
     setIsLoggedIn(true);
+    setIsAdmin(userData.is_admin);
     localStorage.setItem("user", JSON.stringify(userData));
   };
 
   const logout = () => {
     setUser(null);
     setIsLoggedIn(false);
+    setIsAdmin(false);
     localStorage.removeItem("user");
   };
 
@@ -51,6 +55,7 @@ export const AuthProvider = ({ children }) => {
   const value = {
     user,
     isLoggedIn,
+    isAdmin,
     login,
     logout,
     register,

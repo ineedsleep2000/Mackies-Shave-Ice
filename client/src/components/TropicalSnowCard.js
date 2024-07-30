@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import EditTropicalSnow from "./EditTropicalSnow";
+import { useAuth } from "../contexts/AuthContext";
 
 const TropicalSnowCard = ({
   tropicalFlavor,
@@ -8,6 +9,7 @@ const TropicalSnowCard = ({
 }) => {
   const { id, name, image, ice_size_id, category_id } = tropicalFlavor;
   const [isEditing, setIsEditing] = useState(false);
+  const { isLoggedIn, isAdmin } = useAuth();
 
   const handleDelete = () => {
     fetch(`/shaved_ices/${id}`, {
@@ -40,12 +42,16 @@ const TropicalSnowCard = ({
           <p>Ice Size ID: {ice_size_id}</p>
           <p>Category ID: {category_id}</p>
           {/* <button>Choose Me</button> */}
-          <button className="edit-button" onClick={handleEdit}>
-            Edit
-          </button>
-          <button className="delete-button" onClick={handleDelete}>
-            Delete
-          </button>
+          {isLoggedIn && isAdmin && (
+            <>
+              <button className="edit-button" onClick={handleEdit}>
+                Edit
+              </button>
+              <button className="delete-button" onClick={handleDelete}>
+                Delete
+              </button>
+            </>
+          )}
         </>
       )}
     </div>

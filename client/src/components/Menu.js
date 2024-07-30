@@ -42,7 +42,7 @@ const Menu = () => {
   return (
     <div>
       <Menunavbar />
-      <div>
+      <div className="menu-word">
         Please select what kind of food you would like to view from the above
         links!
       </div>

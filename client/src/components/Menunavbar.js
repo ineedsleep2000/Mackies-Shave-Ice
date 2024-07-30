@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const Menunavbar = () => {
   return (
-    <div className="navbar">
-      <ul className="navigation">
+    <div className="m-navbar">
+      <ul className="m-navigation">
         <li>
           <Link className="button" to="/combo_flavors">
             Combination Flavors

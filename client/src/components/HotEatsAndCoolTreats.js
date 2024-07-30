@@ -4,11 +4,13 @@ import Menunavbar from "./Menunavbar";
 import AddHotdogs from "./AddHotdogs";
 import AddDrinks from "./AddDrinks";
 import AddSnacks from "./AddSnacks";
+import { useAuth } from "../contexts/AuthContext";
 
 const HotEatsAndCoolTreats = () => {
   const [hotdogs, setHotdogs] = useState([]);
   const [drinks, setDrinks] = useState([]);
   const [snacks, setSnacks] = useState([]);
+  const { isLoggedIn, isAdmin } = useAuth();
 
   useEffect(() => {
     fetch("/hotdogs")
@@ -29,13 +31,13 @@ const HotEatsAndCoolTreats = () => {
   }, []);
 
   const handleDeleteHotdog = (deleteHotdogsId) =>
-    setHotdogs(hotdogs.filter((hotdogs) => hotdogs.id !== deleteHotdogsId));
+    setHotdogs(hotdogs.filter((hotdog) => hotdog.id !== deleteHotdogsId));
 
   const handleDeleteDrink = (deleteDrinksId) =>
-    setDrinks(drinks.filter((drinks) => drinks.id !== deleteDrinksId));
+    setDrinks(drinks.filter((drink) => drink.id !== deleteDrinksId));
 
   const handleDeleteSnack = (deleteSnacksId) =>
-    setSnacks(snacks.filter((snacks) => snacks.id !== deleteSnacksId));
+    setSnacks(snacks.filter((snack) => snack.id !== deleteSnacksId));
 
   const handleAddHotdog = (newHotdog) =>
     setHotdogs((hotdogs) => [...hotdogs, newHotdog]);
@@ -57,9 +59,9 @@ const HotEatsAndCoolTreats = () => {
         snacks={snacks}
         onDeleteSnack={handleDeleteSnack}
       />
-      <AddHotdogs onAddHotdog={handleAddHotdog} />
-      <AddDrinks onAddDrink={handleAddDrink} />
-      <AddSnacks onAddSnack={handleAddSnack} />
+      {isLoggedIn && isAdmin && <AddHotdogs onAddHotdog={handleAddHotdog} />}
+      {isLoggedIn && isAdmin && <AddDrinks onAddDrink={handleAddDrink} />}
+      {isLoggedIn && isAdmin && <AddSnacks onAddSnack={handleAddSnack} />}
     </div>
   );
 };

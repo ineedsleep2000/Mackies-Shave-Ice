@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import CombinationFlavorsList from "./CombinationFlavorsList";
 import AddCombinationFlavors from "./AddCombinationFlavors";
 import Menunavbar from "./Menunavbar";
+import { useAuth } from "../contexts/AuthContext";
 
 function CombinationFlavors() {
   const [combinationFlavors, setCombinationFlavors] = useState([]);
+  const { isLoggedIn, isAdmin } = useAuth();
 
   useEffect(() => {
     fetch("/combo_flavors")
@@ -44,7 +46,7 @@ function CombinationFlavors() {
         onUpdateComboFlavor={handleUpdate}
         onChooseComboFlavor={handleChoose}
       />
-      <AddCombinationFlavors />
+      {isLoggedIn && isAdmin && <AddCombinationFlavors />}
     </div>
   );
 }
