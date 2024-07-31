@@ -16,7 +16,7 @@ const DrinksCard = ({ drink, onDeleteDrink }) => {
   return (
     <div className="drink-card" style={{ cursor: "pointer" }}>
       <h3>{name}</h3>
-      <p>Price: {price}</p>
+      <p>price: {price}</p>
       {isLoggedIn && isAdmin && (
         <button className="delete-button" onClick={handleDelete}>
           Delete

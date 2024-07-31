@@ -43,8 +43,8 @@ const Menu = () => {
     <div>
       <Menunavbar />
       <div className="menu-word">
-        Please select what kind of food you would like to view from the above
-        links!
+        Please select one of the links above to see a view with only a specific
+        food category!
       </div>
       <div>
         <MenuList

@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import logo from "../assets/mackies-logo.jpeg";
 
 const Navbar = () => {
   const { user, isLoggedIn, logout } = useAuth();
 
   return (
     <div className="navbar">
-      <img src="logo" alt="Mackies shave ice" className="logo" />
+      <img src={logo} alt="Mackies shave ice" className="logo" />
 
       <ul className="navigation">
         <li>
@@ -23,6 +24,22 @@ const Navbar = () => {
         <li>
           <Link className="button" to="/about">
             About
+          </Link>
+        </li>
+        <li>
+          <Link
+            className="button"
+            to="https://www.facebook.com/profile.php?id=100083220046221"
+          >
+            Facebook
+          </Link>
+        </li>
+        <li>
+          <Link
+            className="button"
+            to="https://www.instagram.com/mackies_shave_ice/"
+          >
+            Instagram
           </Link>
         </li>
         {isLoggedIn ? (

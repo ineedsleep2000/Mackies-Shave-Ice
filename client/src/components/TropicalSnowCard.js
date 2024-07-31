@@ -39,8 +39,9 @@ const TropicalSnowCard = ({
         <>
           <img src={image} alt={`${name} image`} className="shaved-ice-image" />
           <h3>{name}</h3>
-          <p>Ice Size ID: {ice_size_id}</p>
-          <p>Category ID: {category_id}</p>
+          <p>This shaved ice tastes just like: {name}!</p>
+          {/* <p>Ice Size ID: {ice_size_id}</p>
+          <p>Category ID: {category_id}</p> */}
           {/* <button>Choose Me</button> */}
           {isLoggedIn && isAdmin && (
             <>

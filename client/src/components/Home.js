@@ -2,21 +2,21 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div className="welomePageDiv">
-      <h1 className="welomePageHeader">Welcome to Mackies Shave Ice!</h1>
-      <div className="welomePageSectionDivs">
-        <p className="welomePageSections">
-          heres a bunch of info about mackies
+    <div className="welcomePageDiv">
+      <h1 className="welcomePageHeader">Welcome to Mackies Shave Ice!</h1>
+      <div className="welcomePageSectionDivs">
+        <p className="welcomePageSections">
+          Here's a bunch of info about Mackies.
         </p>
       </div>
-      <div className="welomePageSectionDivs">
-        <p className="welomePageSections">
-          heres a bunch of info about mackies
+      <div className="welcomePageSectionDivs">
+        <p className="welcomePageSections">
+          Here's a bunch of info about Mackies.
         </p>
       </div>
-      <div className="welomePageSectionDivs">
-        <p className="welomePageSections">
-          heres a bunch of info about mackies
+      <div className="welcomePageSectionDivs">
+        <p className="welcomePageSections">
+          Here's a bunch of info about Mackies.
         </p>
       </div>
     </div>
