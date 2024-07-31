@@ -72,11 +72,12 @@ const CombinationFlavorsCard = ({
       ) : (
         <>
           <h3>{name}</h3>
-          <p>Flavor ID: {flavor_id}</p>
+          <p>This flavor has 3 different flavors in 1!</p>
+          {/* <p>Flavor ID: {flavor_id}</p>
           <p>Add-on ID: {add_on_id}</p>
           <p>Shaved Ice ID: {shaved_ice_id}</p>
           <p>Cream ID: {cream_id}</p>
-          <p>Ice Size ID: {ice_size_id}</p>
+          <p>Ice Size ID: {ice_size_id}</p> */}
           {isLoggedIn && isAdmin && (
             <>
               <button className="edit-button" onClick={handleEdit}>
