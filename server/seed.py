@@ -159,17 +159,17 @@ if __name__ == '__main__':
         snacks.append(sna3)
         db.session.add_all(snacks)
 
-        shaved_ices = []
+        # shaved_ices = []
 
-        si1 = ShavedIce(name="Cherry", image="Cherry_image", ice_size_id=i_s1.id, category_id=c1.id)
-        shaved_ices.append(si1)
-        si2 = ShavedIce(name="Strawberry", image="Strawberry_image", ice_size_id=i_s1.id, category_id=c1.id)
-        shaved_ices.append(si2)
-        si3 = ShavedIce(name="Lemon", image="Lemon_image", ice_size_id=i_s1.id, category_id=c1.id)
-        shaved_ices.append(si3)
-        si4 = ShavedIce(name="Green Apple", image="GreenApple_image", ice_size_id=i_s1.id, category_id=c1.id)
-        shaved_ices.append(si4)
+        # si1 = ShavedIce(name="Cherry", image="Cherry_image", ice_size_id=i_s1.id, category_id=c1.id)
+        # shaved_ices.append(si1)
+        # si2 = ShavedIce(name="Strawberry", image="Strawberry_image", ice_size_id=i_s1.id, category_id=c1.id)
+        # shaved_ices.append(si2)
+        # si3 = ShavedIce(name="Lemon", image="Lemon_image", ice_size_id=i_s1.id, category_id=c1.id)
+        # shaved_ices.append(si3)
+        # si4 = ShavedIce(name="Green Apple", image="GreenApple_image", ice_size_id=i_s1.id, category_id=c1.id)
+        # shaved_ices.append(si4)
 
-        db.session.add_all(shaved_ices)
+        # db.session.add_all(shaved_ices)
         db.session.commit()
 
