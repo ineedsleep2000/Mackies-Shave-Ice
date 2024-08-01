@@ -7,7 +7,7 @@ const Navbar = () => {
   const { user, isLoggedIn, logout } = useAuth();
 
   return (
-    <div className="navbar">
+    <div className="navbar universal-margin">
       <img src={logo} alt="Mackies shave ice" className="logo" />
 
       <ul className="navigation">
@@ -48,14 +48,14 @@ const Navbar = () => {
               <span className="button">Welcome, {user && user.name}</span>
             </li>
             <li>
-              <button className="button" onClick={logout}>
+              <button className="logoutButton" onClick={logout}>
                 Logout
               </button>
             </li>
           </>
         ) : (
           <li>
-            <Link className="button" to="/login">
+            <Link className="loginButton" to="/login">
               Login
             </Link>
           </li>

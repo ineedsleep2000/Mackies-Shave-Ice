@@ -3,7 +3,7 @@ import homeImage from "../assets/Mackies-truck.jpg";
 
 const Home = () => {
   return (
-    <div className="welcomePageDiv">
+    <div className="welcomePageDiv universal-margin">
       <h1 className="welcomePageHeader">Welcome to Mackies Shave Ice!</h1>
       <div className="welcomePageSectionDivs">
         <p className="welcomePageSections">
