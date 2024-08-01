@@ -14,7 +14,7 @@ function CombinationFlavorsList({
         All shaved ice will come in 3 sizes, Small = $5.00, Medium = $6.00,
         Large = $7.00
       </div>
-      <div className="card-list">
+      <div className="combo-card-list">
         {combinationFlavors.map((comboFlavor) => (
           <CombinationFlavorsCard
             key={comboFlavor.id}

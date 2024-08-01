@@ -1,8 +1,57 @@
+/* Universal margin class */
+.universal-margin {
+  padding: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Other existing styles */
 :root {
   --bg: #282c34;
   --header: #fff;
   --link: #61dafb;
   --text: hsla(0, 0%, 100%, 0.88);
+}
+
+/* Menu section colors */
+.combo-section {
+  background-color: #edc951; /* Color: (237,201,81) */
+}
+
+.trop-section {
+  background-color: #eb6841; /* Color: (235,104,65) */
+}
+
+.hot-section {
+  background-color: #cc2a36; /* Color: (204,42,54) */
+}
+
+.drink-section {
+  background-color: #b2a3df; /* Color: (79,55,45) */
+}
+
+.snack-section {
+  background-color: #00a0b0; /* Color: (0,160,176) */
+}
+
+.combo-card-list {
+  background-color: #edc951;
+}
+
+.tropical-snow-list {
+  background-color: #eb6841; /* Color: (235,104,65) */
+}
+
+.hotdogs-section {
+  background-color: #cc2a36; /* Color: (204,42,54) */
+}
+
+.drinks-section {
+  background-color: #b2a3df; /* Color: (79,55,45) */
+}
+
+.snacks-section {
+  background-color: #00a0b0; /* Color: (0,160,176) */
 }
 
 .combo-flavors-list {
@@ -110,7 +159,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgb(105, 250, 255);
+  background: rgb(0, 160, 176);
 }
 
 .navigation li {
@@ -126,7 +175,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgb(228, 255, 105);
+  background: rgb(235, 104, 65);
 }
 
 .m-navigation li {
@@ -413,4 +462,34 @@ body {
 .homeImage {
   height: 600px;
   vertical-align: middle;
+}
+
+.button {
+  color: #fff;
+}
+
+.logoutButton {
+  color: rgb(204, 42, 54);
+}
+
+.loginButton {
+  color: rgb(48, 201, 58);
+}
+
+.edit-button {
+  background-color: #5ce1e6;
+  margin-top: 8px;
+}
+
+.delete-button {
+  background-color: #ff6666;
+  margin-top: 8px;
+}
+
+.edit-button:hover {
+  background-color: darkcyan;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
 }
