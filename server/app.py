@@ -135,7 +135,15 @@ class ComboFlavors(Resource):
         return response
     
 class ComboFlavors_by_id(Resource):
-       def patch(self, id):
+    def delete(self, id):
+        combo_flavor = ComboFlavor.query.filter_by(id=id).first()
+        if not combo_flavor:
+            return make_response({'error': 'combo_flavor not found'}, 404)
+        db.session.delete(combo_flavor)
+        db.session.commit()
+        return make_response({'message': 'combo_flavor deleted'}, 204)
+    
+    def patch(self, id):
         combo_flavor = db.session.get(ComboFlavor, id)
         if not combo_flavor:
             return make_response({'error': 'combo_flavor not found'}, 404)
@@ -143,13 +151,11 @@ class ComboFlavors_by_id(Resource):
         form_json = request.get_json()
         errors = []
 
-        # Validating and setting each field
         for key, value in form_json.items():
             try:
                 if key.endswith('_id'):
-                    # Validate foreign keys
-                    if value:  # Only process if the value is not empty
-                        model_name = key[:-3].capitalize()  # Remove '_id' and capitalize
+                    if value: 
+                        model_name = key[:-3].capitalize()
                         model_class = globals().get(model_name)
                         if model_class:
                             related_obj = db.session.get(model_class, value)

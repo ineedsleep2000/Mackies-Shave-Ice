@@ -15,8 +15,24 @@ const TropicalSnowCard = ({
     fetch(`/shaved_ices/${id}`, {
       method: "DELETE",
     })
-      .then((res) => res.json())
-      .then(() => onDeleteShavedIce(id));
+      .then((res) => {
+        if (res.ok) {
+          return res.text();
+        } else {
+          throw new Error("Failed to delete");
+        }
+      })
+      .then((text) => {
+        if (text) {
+          const json = JSON.parse(text);
+          onDeleteShavedIce(id);
+        } else {
+          onDeleteShavedIce(id);
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting the shaved ice:", error);
+      });
   };
 
   const handleEdit = () => {

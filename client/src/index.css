@@ -448,9 +448,9 @@ body {
   border: 2px solid lightgrey;
   border-radius: 10px;
   padding: 20px;
-  margin: 10px; /* Uniform margin */
+  margin: 10px;
   text-align: center;
-  flex: 1 1 calc(33.333% - 2rem); /* Adjust width for 3 cards per row */
+  flex: 1 1 calc(33.333% - 2rem);
   max-width: calc(33.333% - 2rem);
   display: inline-flex;
   flex-direction: column;
@@ -474,6 +474,21 @@ body {
 
 .loginButton {
   color: rgb(48, 201, 58);
+}
+
+.login-container .button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.login-container .button:hover {
+  background-color: #0056b3;
 }
 
 .edit-button {

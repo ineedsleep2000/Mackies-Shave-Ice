@@ -9,8 +9,24 @@ const HotdogsCard = ({ hotdog, onDeleteHotdog }) => {
     fetch(`/hotdogs/${id}`, {
       method: "DELETE",
     })
-      .then((res) => res.json())
-      .then(() => onDeleteHotdog(id));
+      .then((res) => {
+        if (res.ok) {
+          return res.text();
+        } else {
+          throw new Error("Failed to delete");
+        }
+      })
+      .then((text) => {
+        if (text) {
+          const json = JSON.parse(text);
+          onDeleteHotdog(id);
+        } else {
+          onDeleteHotdog(id);
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting the hotdog:", error);
+      });
   };
 
   return (

@@ -48,7 +48,7 @@ const EditTropicalSnow = ({ tropicalFlavor, onUpdateShavedIce }) => {
         value={formData.name}
         onChange={handleChange}
       />
-      <input
+      {/* <input
         type="text"
         name="image"
         placeholder="Image URL"
@@ -61,7 +61,7 @@ const EditTropicalSnow = ({ tropicalFlavor, onUpdateShavedIce }) => {
         placeholder="Ice Size ID"
         value={formData.ice_size_id}
         onChange={handleChange}
-      />
+      /> */}
       <input
         type="text"
         name="category_id"

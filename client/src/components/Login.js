@@ -61,9 +61,11 @@ const LoginComponent = () => {
         </label>
         <button type="submit">Login</button>
       </form>
-      <Link className="button" to="/register">
-        Register Now!
-      </Link>
+      <div>
+        <Link className="button" to="/register">
+          Register Now!
+        </Link>
+      </div>
       {error && <p className="error">{error}</p>}
     </div>
   );
