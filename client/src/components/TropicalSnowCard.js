@@ -37,12 +37,12 @@ const TropicalSnowCard = ({
         />
       ) : (
         <>
-          <img src={image} alt={`${name} image`} className="shaved-ice-image" />
+          {/* <img src={image} alt={`${name} image`} className="shaved-ice-image" /> */}
           <h3>{name}</h3>
           <p>This shaved ice tastes just like: {name}!</p>
-          {/* <p>Ice Size ID: {ice_size_id}</p>
-          <p>Category ID: {category_id}</p> */}
-          {/* <button>Choose Me</button> */}
+          {/* <p>Ice Size ID: {ice_size_id}</p> */}
+          <p>Category ID: {category_id}</p>
+
           {isLoggedIn && isAdmin && (
             <>
               <button className="edit-button" onClick={handleEdit}>

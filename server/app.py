@@ -135,26 +135,44 @@ class ComboFlavors(Resource):
         return response
     
 class ComboFlavors_by_id(Resource):
-    def patch(self, id):
+       def patch(self, id):
         combo_flavor = db.session.get(ComboFlavor, id)
         if not combo_flavor:
             return make_response({'error': 'combo_flavor not found'}, 404)
         
         form_json = request.get_json()
-        for key, value in form_json.items():
-            if key.endswith('_id'):
-                # Assuming the foreign key fields are named as <model>_id
-                model_name = key.split('_id')[0].capitalize()
-                model_class = globals().get(model_name)
-                if model_class:
-                    value = db.session.get(model_class, value)
-            setattr(combo_flavor, key, value)
-        
-        db.session.add(combo_flavor)
-        db.session.commit()
-        return make_response(combo_flavor.to_dict(), 202)
+        errors = []
 
-# Repeat similar updates for other resource classes as needed
+        # Validating and setting each field
+        for key, value in form_json.items():
+            try:
+                if key.endswith('_id'):
+                    # Validate foreign keys
+                    if value:  # Only process if the value is not empty
+                        model_name = key[:-3].capitalize()  # Remove '_id' and capitalize
+                        model_class = globals().get(model_name)
+                        if model_class:
+                            related_obj = db.session.get(model_class, value)
+                            if not related_obj:
+                                errors.append(f'Invalid {model_name} ID: {value}')
+                                continue
+                            setattr(combo_flavor, key, value)
+                else:
+                    setattr(combo_flavor, key, value)
+            except Exception as e:
+                errors.append(str(e))
+
+        if errors:
+            return make_response({'errors': errors}, 400)
+        
+        try:
+            db.session.add(combo_flavor)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            return make_response({'error': str(e)}, 500)
+        
+        return make_response(combo_flavor.to_dict(), 202)
 
 ########################################################################################################################
 #Hotdogs################################################################################################################
@@ -606,7 +624,11 @@ class Flavors_by_id(Resource):
 ########################################################################################################################
 #Combo flavors##########################################################################################################
    
-class Categorys(Resource):  
+class Categorys(Resource):
+    def get(self):
+        categorys = [category.to_dict() for category in Category.query.all()]
+        return make_response(categorys, 200)
+      
     def post(self):
         try:
             form_json = request.get_json()

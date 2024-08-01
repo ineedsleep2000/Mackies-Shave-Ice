@@ -6,28 +6,36 @@ import { useAuth } from "../contexts/AuthContext";
 
 function CombinationFlavors() {
   const [combinationFlavors, setCombinationFlavors] = useState([]);
+  const [categorys, setCategorys] = useState([]);
   const { isLoggedIn, isAdmin } = useAuth();
 
   useEffect(() => {
     fetch("/combo_flavors")
       .then((response) => response.json())
-      .then((data) => setCombinationFlavors(data));
+      .then((data) => {
+        console.log("Fetched combination flavors:", data);
+        setCombinationFlavors(data);
+      });
+
+    fetch("/categorys")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Fetched categories:", data);
+        setCategorys(data);
+      });
   }, []);
 
   const handleDelete = (deleteCombinationFlavorsId) =>
-    setCombinationFlavors(
-      combinationFlavors.filter(
-        (combinationFlavors) =>
-          combinationFlavors.id !== deleteCombinationFlavorsId
-      )
+    setCombinationFlavors((prevFlavors) =>
+      prevFlavors.filter((flavor) => flavor.id !== deleteCombinationFlavorsId)
     );
 
   const handleAdd = (newShavedIce) =>
-    setCombinationFlavors((shavedIces) => [...shavedIces, newShavedIce]);
+    setCombinationFlavors((prevFlavors) => [...prevFlavors, newShavedIce]);
 
   const handleUpdate = (updatedFlavor) =>
-    setCombinationFlavors((flavors) =>
-      flavors.map((flavor) =>
+    setCombinationFlavors((prevFlavors) =>
+      prevFlavors.map((flavor) =>
         flavor.id === updatedFlavor.id ? updatedFlavor : flavor
       )
     );
@@ -41,6 +49,7 @@ function CombinationFlavors() {
       <Menunavbar />
       <CombinationFlavorsList
         combinationFlavors={combinationFlavors}
+        categorys={categorys}
         onDeleteComboFlavor={handleDelete}
         onAddCombinationFlavor={handleAdd}
         onUpdateComboFlavor={handleUpdate}

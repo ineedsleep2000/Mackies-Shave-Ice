@@ -4,6 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 
 const CombinationFlavorsCard = ({
   combinationFlavor,
+  categorys = [],
   onDeleteComboFlavor,
   onUpdateComboFlavor,
   onChooseComboFlavor,
@@ -16,6 +17,7 @@ const CombinationFlavorsCard = ({
     shaved_ice_id,
     cream_id,
     ice_size_id,
+    category_id,
   } = combinationFlavor;
 
   const [isEditing, setIsEditing] = useState(false);
@@ -62,6 +64,14 @@ const CombinationFlavorsCard = ({
     onChooseComboFlavor(id);
   };
 
+  const categoryName =
+    categorys.find((category) => category.id === category_id)?.name ||
+    "Unknown Category";
+
+  console.log(
+    `Combination Flavor: ${name}, Category ID: ${category_id}, Category Name: ${categoryName}`
+  );
+
   return (
     <div className="combo-flavor-card" style={{ cursor: "pointer" }}>
       {isEditing ? (
@@ -73,11 +83,7 @@ const CombinationFlavorsCard = ({
         <>
           <h3>{name}</h3>
           <p>This flavor has 3 different flavors in 1!</p>
-          {/* <p>Flavor ID: {flavor_id}</p>
-          <p>Add-on ID: {add_on_id}</p>
-          <p>Shaved Ice ID: {shaved_ice_id}</p>
-          <p>Cream ID: {cream_id}</p>
-          <p>Ice Size ID: {ice_size_id}</p> */}
+          <p>Category: {category_id}</p>
           {isLoggedIn && isAdmin && (
             <>
               <button className="edit-button" onClick={handleEdit}>

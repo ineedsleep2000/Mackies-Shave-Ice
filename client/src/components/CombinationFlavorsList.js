@@ -3,6 +3,7 @@ import CombinationFlavorsCard from "./CombinationFlavorsCard";
 
 function CombinationFlavorsList({
   combinationFlavors,
+  categorys,
   onDeleteComboFlavor,
   onUpdateComboFlavor,
   onChooseComboFlavor,
@@ -18,7 +19,8 @@ function CombinationFlavorsList({
           <CombinationFlavorsCard
             key={comboFlavor.id}
             combinationFlavor={comboFlavor}
-            onDeleteComboFlavor={() => onDeleteComboFlavor(comboFlavor.id)}
+            categorys={categorys}
+            onDeleteComboFlavor={onDeleteComboFlavor}
             onUpdateComboFlavor={onUpdateComboFlavor}
             onChooseComboFlavor={onChooseComboFlavor}
           />

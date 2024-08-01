@@ -57,13 +57,13 @@ const AddHotdogs = ({ onAddHotdog }) => {
           value={formData.name}
           onChange={handleChange}
         />
-        <input
+        {/* <input
           type="text"
           name="category_id"
           placeholder="Category ID"
           value={formData.category_id}
           onChange={handleChange}
-        />
+        /> */}
         <label>
           <input
             type="checkbox"
@@ -73,13 +73,13 @@ const AddHotdogs = ({ onAddHotdog }) => {
           />
           With Chili
         </label>
-        <input
+        {/* <input
           type="text"
           name="price"
           placeholder="Price"
           value={formData.price}
           onChange={handleChange}
-        />
+        /> */}
         <button type="submit">Add Hotdog</button>
       </form>
     </div>

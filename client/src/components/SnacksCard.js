@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth } from "../contexts/AuthContext";
 
 const SnacksCard = ({ snack, onDeleteSnack }) => {
-  const { id, name, price } = snack;
+  const { id, name, price, category_id } = snack;
   const { isLoggedIn, isAdmin } = useAuth();
 
   const handleDelete = () => {
@@ -16,7 +16,8 @@ const SnacksCard = ({ snack, onDeleteSnack }) => {
   return (
     <div className="snack-card" style={{ cursor: "pointer" }}>
       <h3>{name}</h3>
-      <p>Price: {price}</p>
+      {/* <p>Price: {price}</p> */}
+      <p>Category ID: {category_id}</p>
       {isLoggedIn && isAdmin && (
         <button className="delete-button" onClick={handleDelete}>
           Delete
