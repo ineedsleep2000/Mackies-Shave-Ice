@@ -27,8 +27,24 @@ const CombinationFlavorsCard = ({
     fetch(`/combo_flavors/${id}`, {
       method: "DELETE",
     })
-      .then((res) => res.json())
-      .then(() => onDeleteComboFlavor(id));
+      .then((res) => {
+        if (res.ok) {
+          return res.text();
+        } else {
+          throw new Error("Failed to delete");
+        }
+      })
+      .then((text) => {
+        if (text) {
+          const json = JSON.parse(text);
+          onDeleteComboFlavor(id);
+        } else {
+          onDeleteComboFlavor(id);
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting the combo flavor:", error);
+      });
   };
 
   const handleEdit = () => {

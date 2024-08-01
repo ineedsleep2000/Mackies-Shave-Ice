@@ -9,8 +9,24 @@ const DrinksCard = ({ drink, onDeleteDrink }) => {
     fetch(`/drinks/${id}`, {
       method: "DELETE",
     })
-      .then((res) => res.json())
-      .then(() => onDeleteDrink(id));
+      .then((res) => {
+        if (res.ok) {
+          return res.text();
+        } else {
+          throw new Error("Failed to delete");
+        }
+      })
+      .then((text) => {
+        if (text) {
+          const json = JSON.parse(text);
+          onDeleteDrink(id);
+        } else {
+          onDeleteDrink(id);
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting the drink:", error);
+      });
   };
 
   return (
