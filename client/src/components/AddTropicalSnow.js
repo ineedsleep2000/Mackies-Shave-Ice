@@ -63,7 +63,7 @@ const AddTropicalSnow = ({ onAddShavedIce }) => {
           value={formData.image}
           onChange={handleChange}
         />
-        <input
+        {/* <input
           type="text"
           name="ice_size_id"
           placeholder="Ice Size ID"
@@ -76,7 +76,7 @@ const AddTropicalSnow = ({ onAddShavedIce }) => {
           placeholder="Category ID"
           value={formData.category_id}
           onChange={handleChange}
-        />
+        /> */}
         <button type="submit">Add Shaved Ice</button>
       </form>
     </div>

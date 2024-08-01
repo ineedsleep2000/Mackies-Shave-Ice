@@ -11,6 +11,7 @@ const EditCombinationFlavor = ({
     shaved_ice_id: combinationFlavor.shaved_ice_id || "",
     cream_id: combinationFlavor.cream_id || "",
     ice_size_id: combinationFlavor.ice_size_id || "",
+    category_id: combinationFlavor.category_id || "",
   });
 
   const handleChange = (e) => {
@@ -19,7 +20,7 @@ const EditCombinationFlavor = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onUpdateCombinationFlavor(formData);
+    onUpdateCombinationFlavor({ ...formData, id: combinationFlavor.id });
   };
 
   return (
@@ -75,6 +76,15 @@ const EditCombinationFlavor = ({
           type="number"
           name="ice_size_id"
           value={formData.ice_size_id}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Category ID:
+        <input
+          type="number"
+          name="category_id"
+          value={formData.category_id}
           onChange={handleChange}
         />
       </label>

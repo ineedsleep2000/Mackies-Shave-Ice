@@ -62,7 +62,7 @@ function AddCombinationFlavors({ onAddCombinationFlavor }) {
           value={formData.name}
           onChange={handleChange}
         />
-        <input
+        {/* <input
           type="text"
           name="category_id"
           placeholder="Category ID"
@@ -103,7 +103,7 @@ function AddCombinationFlavors({ onAddCombinationFlavor }) {
           placeholder="Ice Size ID"
           value={formData.ice_size_id}
           onChange={handleChange}
-        />
+        /> */}
         <button type="submit">Add Combo Flavor</button>
       </form>
     </div>
